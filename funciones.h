@@ -30,8 +30,27 @@ Arreglo crearArreglo(int n){
     }
     return aux;
 }
-//Esto e suna prueba
+Matriz crearMatriz(int n){
+    Matriz aux;
+    int i;
 
+    aux = calloc(n, sizeof(int *));
+    if (aux == NULL)
+    {
+        printf("No hay memoria suficiente. ", 160);
+        exit(0);
+    }
+    for (i=0; i<n; i ++)
+    {
+        aux[i] = calloc(n,sizeof(int));
+        if(aux[i] == NULL)
+        {
+            printtf("No hay memoria suficiente. ", 160);
+            exit(0);
+        }
+    }
+    return aux;
+}
 
 
 
