@@ -30,7 +30,7 @@ Arreglo crearArreglo(int n){
     }
     return aux;
 }
-Matriz crearMatriz(int n){
+Matriz creaMatriz(int n){
     Matriz aux;
     int i;
 
@@ -52,5 +52,32 @@ Matriz crearMatriz(int n){
     return aux;
 }
 
-
+    Matriz leeArchivo(char nomArchivo[20], int *pn, int *pm,int *ptipo)
+    {
+        FILE *archivo;
+        Matriz Grafo;
+        int n, m, tipo, i, nodo1, nodo2, costo;
+        archivo = fopen(nomArchivo, "r");
+        if (archivo == NULL)
+        {
+            printf("Archivo no encontrado. ", 160);
+            exit(0); }
+        fscanf(archivo, "%i", &n);
+        fscanf(archivo, "%i", &m);
+        fscanf(archivo, "%i", &tipo);
+        Grafo = creaMatriz(n);
+        for(i=1;i<=m;i++)
+        {
+            fscanf(archivo, "%i", &nodo1);
+            fscanf(archivo, "%i", &nodo2);
+            fscanf(archivo, "%i", &costo);
+            Grafo[nodo1][nodo2] = costo;
+            if (tipo ==2)
+                Grafo[nodo2][nodo1]= costo; }
+        fclose(archivo);
+        *pn = n;
+        *pm = m;
+        *ptipo = tipo;
+        return Grafo;
+    }
 
