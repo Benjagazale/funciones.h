@@ -1,5 +1,7 @@
 /* definiciones de los datos y operaciones de gestión de memoria y lectura
-Código página 5 y 6 de las intruccione
+Código página 5 y 6 de las intrucciones
+Estas son las funciones propuestas por el profesor que van en el archivo funciones.h
+se debe importar en el archivo principal
 */
 
 #define infinito 2147000000
