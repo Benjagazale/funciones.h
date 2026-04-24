@@ -3,17 +3,27 @@ Código página 5 y 6 de las intrucciones
 Estas son las funciones propuestas por el profesor que van en el archivo funciones.h
 se debe importar en el archivo principal
 */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #define infinito 2147000000
 
 typedef int **Matriz;
 typedef int *Arreglo;
 typedef bool *ArregloBool;
 
+struct arco {
+    int n1;
+    int n2;
+    int costo;
+};
+
+typedef struct arco tArco;
+
 ArregloBool crearArregloBool(int n){
     ArregloBool aux;
     int i;
-    aux = callov(n, ssizeof(bool));
+    aux = calloc(n, sizeof(bool));
     if(aux == NULL){
         printf("No hay memoria suficiente. ", 160);
         exit(0);
@@ -47,14 +57,14 @@ Matriz creaMatriz(int n){
         aux[i] = calloc(n,sizeof(int));
         if(aux[i] == NULL)
         {
-            printtf("No hay memoria suficiente. ", 160);
+            printf("No hay memoria suficiente. ", 160);
             exit(0);
         }
     }
     return aux;
 }
 
-    Matriz leeArchivo(char nomArchivo[20], int *pn, int *pm,int *ptipo)
+    Matriz leerArchivo(char nomArchivo[20], int *pn, int *pm,int *ptipo)
     {
         FILE *archivo;
         Matriz Grafo;
@@ -81,5 +91,17 @@ Matriz creaMatriz(int n){
         *pm = m;
         *ptipo = tipo;
         return Grafo;
+    }
+
+    void PROFUNDIDAD(Matriz Grafo, int n, ArregloBool Visitados, int nodo){
+        int j;
+        Visitados[nodo] = true;
+        printf("%d", nodo);
+        // Si hay camino y nodo j no ha sido visitado
+        for (j = 0 ; j < n; j++) { 
+            if (Grafo [nodo][j]!= 0 && !Visitados[j]){
+                PROFUNDIDAD(Grafo, n, Visitados, j);
+            }
+        }
     }
 
